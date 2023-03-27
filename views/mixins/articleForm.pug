@@ -1,0 +1,22 @@
+mixin articleForm(article, buttonText, saveUrl, cancelUrl, deleteUrl)
+    form(action=saveUrl method='post')
+        div.input-container.wide
+            label(for='title') Title
+            input(type = 'text' id = 'title' name = 'title' required = true placeHolder = 'My Blog Title' value = article.title)
+
+        div.input-container.super-wide
+            label(for='intro') Intro
+            input(type = 'text' id = 'intro' name = 'intro' required = true placeHolder = 'oiushqerdgouhweg' value = article.intro)
+
+        div.input-container.super-widewide
+            label(for='image_url') Image
+            input(type = 'text' id = 'image_url' name = 'image_url' required = true value = article.image_url)
+
+        div.input-container
+            label(for='body') body
+            textarea(id = 'body' name = 'body' rows = 20 cols= 100 required = true ) #{article.body}
+
+        a.button(href=cancelUrl) Cancel
+        if(deleteUrl)
+            a.button(href= deleteUrl) Delete
+        button.button.primary(type = 'submit') #{buttonText}
