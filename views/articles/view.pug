@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+    include ../mixins/comment
     div.container
         div.content
             div.article-header-row
@@ -13,3 +14,20 @@ block content
 
             img.blog-image(src= article.image_url)
             p.article-body=article.body
+
+            div.comment-section
+                h3.comment-section-title Comments (#{article.comments.length})
+                div.comment-form
+                    form(action=`/article/${article.id}/comment/create` method = 'post')
+                        div.input-container.wide
+                            label(for= 'author_name').form-label Your Name
+                            input(type = 'text' id = 'author_name' name='author_name' required=true)
+                        div.input-container.wide
+                            textarea(placeholder="Your comment here..." required=true name="body" id = "body" cols='80' rows="5")
+                        div
+                            button.button.primary(type= "submit") Comment
+
+                ul.comment-list
+                    each comment in article.comments
+                        li
+                            +comment(comment)

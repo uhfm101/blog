@@ -1,4 +1,4 @@
-const {Article} = require('../models')
+const {Article, Comment} = require('../models')
 
 module.exports.renderAddForm = function(req, res){
     const article = {
@@ -24,7 +24,17 @@ module.exports.addForm = async function(req, res){
 
 module.exports.displayArticle = async function(req, res){
     const article = await Article.findByPk(req.params.articleId, {
-        include: ['author']
+        include: [
+            'author',
+            {
+                model: Comment,
+                as: 'comments',
+                required: false
+            }
+            ],
+        order: [
+            ['comments', 'commented_on', 'desc']
+        ]
     })
     res.render('articles/view', {article})
 }

@@ -1,0 +1,3 @@
+mixin replyForm(comment)
+    div.reply-form
+        form(action = `/comment/${comment.id}/reply/create` method='post')

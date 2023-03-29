@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const articleController = require('../controllers/articleController')
-
+const commentController = require('../controllers/commentController')
  router.get('/', function(req, res){
    res.redirect('/article')
  })
@@ -20,4 +20,6 @@ router.get("/article/:articleId/edit", articleController.renderEditForm)
 router.post('/article/:articleId/edit', articleController.updateArticle)
 
 router.get('/article/:articleId/delete', articleController.deleteArticle)
+
+router.post('/article/:articleId/comment/create', commentController.createComment)
 module.exports = router;
