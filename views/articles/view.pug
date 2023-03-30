@@ -28,6 +28,7 @@ block content
                             button.button.primary(type= "submit") Comment
 
                 ul.comment-list
+                    h1 #{article.comments.length}
                     each comment in article.comments
                         li
                             +comment(comment)

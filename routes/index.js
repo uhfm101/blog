@@ -22,4 +22,6 @@ router.post('/article/:articleId/edit', articleController.updateArticle)
 router.get('/article/:articleId/delete', articleController.deleteArticle)
 
 router.post('/article/:articleId/comment/create', commentController.createComment)
+
+router.post('/comment/:commentId/reply/create', commentController.addRelpy)
 module.exports = router;
