@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const articleController = require('../controllers/articleController')
 const commentController = require('../controllers/commentController')
+const userController = require('../controllers/userController')
  router.get('/', function(req, res){
    res.redirect('/article')
  })
@@ -24,4 +25,10 @@ router.get('/article/:articleId/delete', articleController.deleteArticle)
 router.post('/article/:articleId/comment/create', commentController.createComment)
 
 router.post('/comment/:commentId/reply/create', commentController.addRelpy)
+
+
+router.get('/register', userController.renderRegistrationForm)
+router.post('/register', userController.register)
+
+router.get('/login', userController.login)
 module.exports = router;
