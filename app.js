@@ -30,7 +30,12 @@ app.use(session({
 const {passport} = require('./middleware/passport.js')
 app.use(passport.initialize())
 app.use(passport.authenticate('session'))
-
+app.use(function(req, res,next){
+  if(req.user){
+    res.locals.user=req.user;
+  }
+  next()
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

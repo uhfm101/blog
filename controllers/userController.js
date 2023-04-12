@@ -1,5 +1,6 @@
 const {User, Role} = require("../models")
 const md5 = require('md5')
+const passport = require('passport')
 
 module.exports.renderRegistrationForm =  async function(req, res){
     const roles = await Role.findAll()
@@ -21,3 +22,9 @@ module.exports.register =  async function(req,res){
 module.exports.login = async function(req, res){
     res.render('users/login')
 }
+
+module.exports.login = passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureMessage: true
+})

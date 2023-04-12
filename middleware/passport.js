@@ -24,7 +24,7 @@ passport.use(
             usernameField: 'email',
             passwordField: 'password'
         },
-        verifyUser()
+        verifyUser
     )
 )
 
@@ -34,7 +34,7 @@ passport.serializeUser(function(user, done){
     })
 })
 
-passport.deserializeUser(async function (suer, done){
+passport.deserializeUser(async function (user, done){
     const userModel = await User.findByPk(user.id, {
         include: [
             'role'
