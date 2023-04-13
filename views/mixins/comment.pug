@@ -5,6 +5,7 @@ mixin comment(comment)
             div.comment-author=comment.author_name
             div.comment-time=comment.commentedAgo
         div.comment-body=comment.body
+        a(href = `/comment/${comment.id}/delete`) Delete
         div
             h4.reply-header Replies (#{comment.replies.length})
             div.reply-container

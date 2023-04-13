@@ -17,6 +17,6 @@ mixin articleForm(article, buttonText, saveUrl, cancelUrl, deleteUrl)
             textarea(id = 'body' name = 'body' rows = 20 cols= 100 required = true ) #{article.body}
 
         a.button(href=cancelUrl) Cancel
-        if(deleteUrl)
+        if(deleteUrl && user && article.isOwnedBy(user))
             a.button(href= deleteUrl) Delete
         button.button.primary(type = 'submit') #{buttonText}
