@@ -27,8 +27,9 @@ router.get('/article/:articleId/delete', ensureUserAuthenticated, articleControl
 router.post('/article/:articleId/comment/create', commentController.createComment)
 
 router.post('/comment/:commentId/reply/create', commentController.addRelpy)
+router.get('/comment/:commentId/reply/:replyId/delete', ensureUserAuthenticated, userHasRole('author'), commentController.deleteReply)
 
-router.get('/comment/:commentId/delete', commentController.deleteComment)
+router.get('/comment/:commentId/delete', ensureUserAuthenticated, userHasRole('author'), commentController.deleteComment)
 
 
 router.get('/register', userController.renderRegistrationForm)

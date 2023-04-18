@@ -36,3 +36,16 @@ module.exports.deleteComment = async function(req, res){
     )
     res.redirect(`/article/${comment.article_id}`)
 }
+
+module.exports.deleteReply  = async function(req, res){
+    const reply = await Reply.findByPk(req.params.replyId)
+    await Reply.update({
+        is_deleted: true
+    }, {
+        where: {
+            id: req.params.replyId
+        }
+    }
+    )
+    res.redirect(`/article/${reply.article_id}`)
+}
